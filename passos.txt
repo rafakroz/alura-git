@@ -1,0 +1,395 @@
+Passos do Curso de Git e Github
+
+BRANCH = ramos, ramificações, linhas de desnvolvimento
+
+1 - criei a pasta git-e-github
+
+2 - criei a pasta rafael e salvei o arquivo index.html
+
+3 - acessei o caminho no Gitbash >> cd documents/git-e-github/rafael
+
+4 - [RAFAEL] ls
+[Para ver o arquivo]
+
+5 - [RAFAEL] git init para inicializar 
+
+6 - [RAFAEL] git status
+
+7 - [RAFAEL] git add index.html ou git add .
+[para todos arquivos]
+
+8 - [RAFAEL] git status
+
+9 - [RAFAEL] git config --local user.name ""
+[pode ser feito antes]
+
+10 - [RAFAEL] git config --local user.email ""
+[pode ser feito antes]
+
+11 - [RAFAEL] git commit -m "mensagem"
+
+12 - [RAFAEL] git log para ver os logs
+
+13 - [RAFAEL] git log -p para ver log com detalhes
+
+14 - foi criado um arquivo de exemplo ide-config e outro .gitignore. Dentro do gitignore foi inserida uma linha com o nome do arquivo. A partir deste ponto o arquivo ide-config deixará de ser rastreado.
+
+15 - [RAFAEL] git add .gitignore
+
+16 - [RAFAEL] cd .. para voltar um nível
+
+17 - [RAFAEL] mkdir servidor para criar o servidor que guardará as alterações
+
+18 - [RAFAEL] cd servidor para acessar
+
+19 - [RAFAEL] git init --bare [puro, não guardará os arquivos em si] para inicializar o git na pasta
+
+20 - [RAFAEL] cd ../rafael/ para voltar para a pasta rafael
+
+21 - git status para conferir que não há nada a fazer.
+
+22 - git remote
+
+23 - git remote add local [para dar um nome] c:/users/rafae/documents/git-e-github/servidor
+
+24 - git remote para exibir o servidor renomeado criado
+
+25 - git remote -v para confirmar os caminhos
+
+26 - cd ..
+
+27 - mkdir ana
+
+28 - cd ana
+[para acessar o diretório criado]
+
+29 - [ANA] git clone /c/users/rafae/documents/git-e-github/servidor projeto
+[vai clonar, trazer os dados do repositório servidor. Vai criar dentro da pasta ana uma pasta servidor, no entanto, renomeada para projeto]
+
+30 - cd ../rafael/
+
+31 - [RAFAEL] git remote para confirmar o servidor [local]
+
+32 - [RAFAEL] git push local master
+[enviar os branch/linha de trabalho/dados chamdo de MASTER para o repositório local]
+
+33 - Caso ocorra erro, pode ser que o repositório servidor não tenha sido inicializado como git init --bare, então para remover a configuração, use rm -rf .git e dê o comando git init --bare novamente
+
+34 - cd ../ana/projeto/
+
+35 - [ANA] ls
+[não haverá arquivo nenhum, pois o usuário Rafael enviou os dados para o servidor, mas, Ana precisa trazer o arquivo]
+
+36 - git remote
+
+37 - git remote rename origin local
+
+38 - git remote
+[e então o repositório está com o mesmo nome]
+
+39 - git pull local master
+[trazer os dados da pasta local para a master da ana]
+
+40 - ls [para ver os arquivos
+
+41 - alterar o nome do curso no arquivo da ana
+
+42 - git status
+[para ver que há modificação pendente de commit]
+
+43 - git commit -m "Renomeando curso de Integração Contínua"
+
+44 - git push local master
+[para enviar os dados]
+
+45 - cd C:/users/rafae/documents/git-e-github/rafael
+[para "logar" como rafael]
+
+46 - git status
+[conferir que não tem nada para enviar, mas há dados a receber, pois houve alteração da Ana]
+
+47 - git pull local master
+[baixou o arquivo com as alterações]
+
+48 - git log -p
+[para visualizar as alterações]
+
+49 - No VSCode o arquivo da pasta rafael está igual ao da pasta ana.
+
+*** Acessar o github ***
+
+50 - Logar no Github
+
+51 - Clicar no + no topo direito e criar um novo repositório
+
+52 - Dar um nome ao repositório
+
+53 - git remote add origin https://github.com/rafakroz/alura-git.git
+[neste caso, será mantido o nome do repositório como origin, pois é o mais comum, praticamente um padrão]
+
+54 - git push -u origin master
+[Para enviar os dados, mas alteramos para git push origin main sem o -u, pois ele indica que posteriormente para fazer um pull dentro da MASTER, não precisaria digitar o comando completo. Sem o -u, será preciso sempre indicar o repositório qual branch será enviado.
+
+55 - git branch
+[exibir o branch / ramificação existente em uso]
+
+56 - git branch titulo
+[cria um novo branch]
+
+57 - git checkout titulo
+[muda para o ramo titulo criado anteriormente]
+
+58 - Alterado o titulo no arquivo index da pasta rafael
+
+59 - git status
+[mostra que houve alteração]
+
+60 - git add index.html
+[para adicionar o arquivo]
+
+61 - git commit -m ""
+[para commitar o arquivo]
+
+62 - git log
+[para ver todas alterações]
+
+63 - Acessar como Ana
+
+64 - git checkout -b lista
+[-b criar o branch e acessar]
+
+65 - No arquivo index.html da pasta Ana foi inserido uma li com um curso.
+
+66 - git add index.html
+
+67 - git commit -m ""
+
+*** Unir (merge) alterações ***
+
+68 - git checkout master
+
+69 - No index.html de Rafael o curso Docker foi alterado.
+
+70 - git status
+
+71 - git add index.html
+
+72 - git commit -m "Corrigindo o nome do curso de Docker"
+
+73 - git merge titulo
+[vai surgir uma tela com uma mensagem do merge no VIM]
+
+74 - :x 
+[Para confirmar o merge]
+
+75 - git log
+
+*** Atualizar os 2 branchs (Master e Titulo) num único "merge" ***
+
+76 - git log --graph
+[exibe as linhas específicas de desenvolvimento]
+
+77 - git checkout titulo
+
+78 - git add index.html
+
+79 - git commit -m "Inserido 'Lista de' no título da página"
+
+80 - git checkout master
+
+81 - git rebase titulo
+[O git trazer os commits do branch titulo e para o branch MASTER]
+
+82 - git log
+[será possível visualizar os commits titulo e master]
+
+83 - git push local master
+[para atualizar tudo]
+
+84 - [ANA] git checkout master
+
+85 - [ANA] git pull local master
+[agora, tem todos os dados atualizados na Master]
+
+86 - [ANA] git checkout lista
+
+87 - [ANA] Atualizar o curso Docker do index
+
+88 - [ANA] git add index.html
+
+89 - [ANA] git commit -m "Atualizando o nome do curso de Docker"
+
+90 - [ANA] git log -p
+[Garantir que a atualizaçãi foi efetuada]
+
+91 - [ANA] git checkout master
+
+*** Foram efetuadas atualizações na mesma lista por 2 usuários diferentes. O que vai acontecer? E o que fazer? ***
+
+92 - git merge lista
+[Git exibe que há conflito de informações]
+
+93 - No VSCode, será exibido o conflito de alterações.
+
+94 - As alterações da Ana foram apagadas e o arquivo index foi salvo.
+
+95 - [ANA] git status
+[Há 2 alterações diferentes que necessitam de correção]
+
+96 - [ANA] git add index.html
+[O git entenderá que as correções foram efetuadas]
+
+97 - [ANA] git commit
+[Para finalizar o merge. É como o git entendesse que as correções foram efetuadas e em seguida, vai realizar o commit de merge]
+
+98 - [ANA] :x
+[Para confirmar o merge]
+
+99 - [ANA] git log --graph
+[Para ver o caminho dos branch e visualizar o merge da lista]
+
+100 - [ANA] git push local master
+
+101 - [RAFAEL] Alterar o curso de Vagrant no arquivo do Rafael
+
+102 - [RAFAEL] git status
+
+103 - [RAFAEL] git add index.html
+
+104 - [RAFAEL] git commit -m "Corrigindo o curso de Vagrant"
+
+105 - [RAFAEL] git push local master
+[Vai dar erro! A Ana já tinha enviado o commit de merge, então é preciso garantir que estamos trabalhando com a versão mais recente do código]
+
+106 - [RAFAEL] git pull local master
+[será efetuado o merge do branch master do servidor com o branch master do Rafael]
+
+107 - [RAFAEL] :x
+[Para salvar]
+
+108 - [RAFAEL] git push local master
+
+///// Sempre antes de iniciar o trabalho, o usuário irá realizar o git pull para saber se há alguma alteração no repositório remoto /////
+
+109 - [ANA] git pull local master
+[Para saber ser há alteração no repositório remoto]
+
+*** Como desfazer alguma alteração ***
+
+110 - [RAFAEL] Alterar o curso Ansible para Ansible: Infraestrutura como código no index.html
+
+111 - [RAFAEL] git status
+
+112 - [RAFAEL] git checkout -- index.html
+[Este comando irá desfazer a alteração, ou seja, o checkout vai nos levar para o estado anterior do arquivo]
+
+113 - [RAFAEL] git status
+
+114 - [RAFAEL] Alterar o index.html novamente
+
+115 - [RAFAEL] git add index.html
+[Simulando o usuário fez a alteração, mas não testou]
+
+116 - [RAFAEL] git status
+
+117 - [RAFAEL] git restore --staged index.html
+[Desfazer alteração marcada para commit. As alterações estão aplicadas, mas, desmarcadas para commit]
+
+118 - [RAFAEL] git checkout -- index.html
+[Para desfazer as alterações totalmente]
+
+119 - [RAFAEL] git status
+[E não tem mais alteração para commitar]
+
+*** Simular um erro, de um commit de código incorreto ***
+
+120 - [RAFAEL] Alterar o index.html (Ansible novamente)
+
+121 - [RAFAEL] git add index.html
+
+122 - [RAFAEL] git commit -m "Mudando nome do curso de Ansible"
+
+*** Desfazer commit ***
+
+123 - [RAFAEL] git log
+
+124 - [RAFAEL] copiar o código/hash de identificação do commit em questão
+
+125 - [RAFAEL] git revert da30c9bf3eab3cd73c7b2ab272888f3ff73eaf1f
+[O commit informado será desfeito. Será criado um novo commit desfazendo o commit anterior]
+
+126 - [RAFAEL] :x
+
+127 - [RAFAEL] git log
+[Haverão 2 commits: 1 mudando nome e ou revertendo]
+
+*** Salvar trabalho para ser usado noutro momento ***
+
+128 - [RAFAEL] Alterar o curso Ansible: Infraestrutura como código no index.html
+
+129 - [RAFAEL] git status
+
+130 - [RAFAEL] git stash
+[salvar as alterações num local temporário, sem que gere um log e um commit]
+
+131 - [RAFAEL] git stash list
+[Exibe a lista de tud que está salvo]
+
+132 - [RAFAEL] Alterar o curso Kubernetes: Introdução a Orquestração de Containers no index.html
+
+133 - [RAFAEL] git status
+
+134 - [RAFAEL] git add index.html
+
+135 - [RAFAEL] git commit -m "Alterando o nome do curso de Kubernetes"
+
+136 - [RAFAEL] git stash list
+
+*** Trazer os dados salvos para o "local" de trabalho ***
+
+136 - [RAFAEL] git stash apply 0
+[0 é o número da Stash][As modificações serão aplicadas, no entanto as modificações continuarão na stash. Para remover as modificações da stash, seria preciso efetuar o comando git stash drop]
+
+ou
+
+137 - [RAFAEL] git stash pop
+[Resgata as modificações e tirar da stash, e aplica um auto-merge. O Arquivo é atualizado, sem precisar commitar]
+
+138 - [RAFAEL] git add index.html
+
+139 - [RAFAEL] git commit -m "Alterando o nome do curso de Ansible"
+
+140 - [RAFAEL] git push local master
+[local]
+
+141 - [RAFAEL] git push origin master
+[github]
+
+142 - [RAFAEL] git log --oneline
+
+*** Alterar o código para um estado anterior específico (viajar no tempo) ***
+
+143 - [RAFAEL]
+
+
+====================
+
+Chegou a hora de você pôr em prática o que foi visto na aula. Para isso, execute os passos listados abaixo.
+
+1) Execute o comando git log -p para ver, junto a cada commit, as alterações nele realizadas;
+
+2) Execute agora o comando git log --oneline;
+
+3) Execute o comando git diff {hash do commit de merge com lista}..{hash do último commit realizado};
+
+4) Execute alguma (pequena) alteração no index.html;
+
+5) Execute o comando git diff e veja esta alteração;
+
+6) Desfaça esta última alteração;
+
+7) Execute o comando git tag -a v0.1.0 para criar uma tag no seu código;
+
+8) Execute o comando git push origin v0.1.0 para enviar esta tag para o GitHub;
+
+9) Abra a página do repositório do GitHub que você criou e confira a aba de Releases.
