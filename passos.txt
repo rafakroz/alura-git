@@ -393,3 +393,11 @@ Chegou a hora de você pôr em prática o que foi visto na aula. Para isso, exec
 8) Execute o comando git push origin v0.1.0 para enviar esta tag para o GitHub;
 
 9) Abra a página do repositório do GitHub que você criou e confira a aba de Releases.
+
+git tag -a [nome da tag] -m ""   
+cria a tag com uma mensagem descritiva
+
+git tag
+exibe todas as tags
+
+
