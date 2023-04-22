@@ -400,4 +400,5 @@ cria a tag com uma mensagem descritiva
 git tag
 exibe todas as tags
 
-
+git push orgin v0.1.0
+para enviar a tag
